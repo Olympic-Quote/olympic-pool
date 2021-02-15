@@ -4,17 +4,17 @@ import { useHistory } from 'react-router-dom'
 import { Button } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
-const NextButton = styled(Button)(props => ({
-  position: 'absolute',
-  bottom: 0,
-  right: 0,
-  margin: '2rem',
-}))
-
-const PreviousButton = styled(Button)(props => ({
+const PreviousButton = styled(Button)(() => ({
   position: 'absolute',
   bottom: 0,
   left: 0,
+  margin: '2rem',
+}))
+
+const NextButton = styled(Button)(() => ({
+  position: 'absolute',
+  bottom: 0,
+  right: 0,
   margin: '2rem',
 }))
 
