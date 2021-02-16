@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import { NavDisplay } from 'components/nav-display'
 import { EditCog } from 'components/edit-cog'
-import { Flex } from '@chakra-ui/react'
 
 const Materials: React.FC = () => {
   return (
