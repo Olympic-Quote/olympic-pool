@@ -19,8 +19,8 @@ const NextButton = styled(Button)(() => ({
 }))
 
 type NavDisplayProps = {
-  previous: string
-  next: string
+  previous?: string
+  next?: string
   isLastPage?: boolean
   isFirstPage?: boolean
   isDisabled?: boolean
@@ -30,11 +30,15 @@ const NavDisplay: React.FC<NavDisplayProps> = ({ previous, next, isLastPage, isF
   const history = useHistory()
 
   const handlePrevious = () => {
-    history.push(previous)
+    if (previous) {
+      history.push(previous)
+    }
   }
 
   const handleNext = () => {
-    history.push(next)
+    if (next) {
+      history.push(next)
+    }
   }
 
   const handleSubmit = () => {

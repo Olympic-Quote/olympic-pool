@@ -6,7 +6,7 @@ const Rentals: React.FC = () => {
   return (
     <div style={{ height: '100vh' }}>
       <h1>Rentals!</h1>
-      <NavDisplay previous={'/wages'} next={''} isLastPage />
+      <NavDisplay previous={'/wages'} isLastPage />
     </div>
   )
 }
