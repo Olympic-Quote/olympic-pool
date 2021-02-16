@@ -3,12 +3,12 @@ import { Switch, Route } from 'react-router-dom'
 
 import { ProjectTypeSelection } from 'screens/project-type-selection'
 // import { SmallBuildQuoteCalculator } from 'screens/small-build-quote-calculator'
-import { Materials } from 'screens/materials/materials'
-import { Wages } from 'screens/wages/wages'
-import { Rentals } from 'screens/rentals/rentals'
-import { MaterialsEditor } from 'screens/materials/materials-editor'
-import { WagesEditor } from 'screens/wages/wages-editor'
-import { RentalsEditor } from 'screens/rentals/rentals-editor'
+import { Materials } from 'screens/materials'
+import { Wages } from 'screens/wages'
+import { Rentals } from 'screens/rentals'
+import { MaterialsEditor } from 'screens/materials-editor'
+import { WagesEditor } from 'screens/wages-editor'
+import { RentalsEditor } from 'screens/rentals-editor'
 
 const AuthenticatedApp: React.FC = () => {
   return (
