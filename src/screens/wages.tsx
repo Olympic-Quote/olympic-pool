@@ -2,13 +2,13 @@ import * as React from 'react'
 
 import { NavDisplay } from 'components/nav-display'
 
-const SmallBuildWages: React.FC = () => {
+const Wages: React.FC = () => {
   return (
     <div style={{ height: '100vh' }}>
       <h1>Wages!</h1>
-      <NavDisplay previous={'/small-build/materials'} next={'/small-build/rentals'} />
+      <NavDisplay previous={'/materials'} next={'/rentals'} />
     </div>
   )
 }
 
-export { SmallBuildWages }
+export { Wages }
