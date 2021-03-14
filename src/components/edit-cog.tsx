@@ -2,27 +2,19 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { IconButton } from '@chakra-ui/react'
 import { SettingsIcon } from '@chakra-ui/icons'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
-const EditIconButton = styled(IconButton)(() => ({
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  margin: '.5rem',
-}))
+const EditIconButton = styled(IconButton)(() => ({}))
 
-type EditCogProps = {
-  mainPage: string
-}
-
-const EditCog: React.FC<EditCogProps> = ({ mainPage }) => {
+const EditCog: React.FC = () => {
   const history = useHistory()
+  const location = useLocation()
 
   const handleSettings = () => {
-    history.push(`/${mainPage}/editor`)
+    history.push(`${location.pathname}/editor`)
   }
 
-  return <EditIconButton icon={<SettingsIcon />} aria-label={`${mainPage} editor`} onClick={handleSettings} />
+  return <EditIconButton icon={<SettingsIcon />} aria-label={`${location} editor`} onClick={handleSettings} />
 }
 
 export { EditCog }
