@@ -2,7 +2,6 @@ import * as React from 'react'
 import 'firebase/firestore'
 import { useFirestoreCollectionData, useFirestore } from 'reactfire'
 
-import { NavDisplay } from 'components/nav-display'
 import { Item } from 'components/item'
 
 const Materials: React.FC = () => {

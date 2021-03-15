@@ -11,18 +11,10 @@ const BackIconButton = styled(IconButton)(() => ({
   margin: '.5rem',
 }))
 
-type BackButtonProps = {
-  mainPage: string
-}
-
-const BackButton: React.FC<BackButtonProps> = ({ mainPage }) => {
+const BackButton: React.FC = () => {
   const history = useHistory()
 
-  const handleBack = () => {
-    history.push(`/${mainPage}`)
-  }
-
-  return <BackIconButton icon={<ArrowBackIcon />} aria-label="back" onClick={handleBack} />
+  return <BackIconButton icon={<ArrowBackIcon />} aria-label="back" onClick={() => history.goBack()} />
 }
 
 export { BackButton }

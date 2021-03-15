@@ -4,7 +4,7 @@ import { BackButton } from 'components/back-button'
 const MaterialsEditor: React.FC = () => {
   return (
     <>
-      <BackButton mainPage="materials" />
+      <BackButton />
       <h1>Materials Editor!</h1>
     </>
   )
