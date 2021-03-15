@@ -17,7 +17,7 @@ const ProjectTypeSelection: React.FC = () => {
           <option value="small-build">Small Build</option>
         </Select>
       </Center>
-      <NavDisplay next={`/materials`} isDisabled={projectType === ''} isFirstPage />
+      <NavDisplay />
     </div>
   )
 }
