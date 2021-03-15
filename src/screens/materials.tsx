@@ -1,16 +1,16 @@
 import * as React from 'react'
+import 'firebase/firestore'
+import { useFirestoreCollectionData, useFirestore } from 'reactfire'
 
 import { NavDisplay } from 'components/nav-display'
-import { EditCog } from 'components/edit-cog'
+import { Item } from 'components/item'
 
 const Materials: React.FC = () => {
-  return (
-    <div style={{ height: '100vh' }}>
-      <EditCog mainPage="materials" />
-      <h1>Materials!</h1>
-      <NavDisplay previous={'/'} next={'/wages'} />
-    </div>
-  )
+  const materialsRef = useFirestore().collection('materials')
+  const materials = useFirestoreCollectionData<{ name: string; costPerUnit: number }>(materialsRef, { idField: 'name' })
+    .data
+
+  return <Item options={materials} />
 }
 
 export { Materials }

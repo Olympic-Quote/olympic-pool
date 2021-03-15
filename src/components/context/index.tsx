@@ -3,6 +3,8 @@ import { FirebaseAppProvider, SuspenseWithPerf } from 'reactfire'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
+import { Layout } from 'components/layout'
+
 export const firebaseConfig = {
   apiKey: 'AIzaSyBMtmQ2OBtsnmRPi_VFCVhqZjrKR2qK8zg',
   authDomain: 'olympic-quote.firebaseapp.com',
@@ -28,7 +30,9 @@ const AppProviders: React.FC = ({ children }) => {
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <SuspenseWithPerf traceId={'loading-app-status'} fallback={<div>loading...</div>}>
         <ChakraProvider theme={theme} resetCSS>
-          <Router>{children}</Router>
+          <Router>
+            <Layout>{children}</Layout>
+          </Router>
         </ChakraProvider>
       </SuspenseWithPerf>
     </FirebaseAppProvider>
