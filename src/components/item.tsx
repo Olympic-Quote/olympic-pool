@@ -17,6 +17,7 @@ interface IFormInput {
 
 type ItemProps = {
   options: IOption[]
+  id: string
 }
 
 const Item: React.FC<ItemProps> = ({ options }) => {
