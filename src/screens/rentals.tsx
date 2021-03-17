@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { Item } from 'components/item'
 
 const Rentals: React.FC = () => {
-  const [itemIDs, setItemIDs] = React.useState<string[]>([])
+  const [itemIDs, setItemIDs] = React.useState<string[]>([uuidv4()])
 
   const collectionRef = useFirestore().collection('rentals')
   const collectionDocuments = useFirestoreCollectionData<{ name: string; costPerUnit: number }>(collectionRef, {
