@@ -1,5 +1,7 @@
 # olympic-pool
 
+An application that allows users to quote the price of a pool
+
 Steps to completion:
 
 - [ ] add edit pages
