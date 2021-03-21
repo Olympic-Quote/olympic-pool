@@ -4,6 +4,14 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 import { Layout } from 'components/layout'
+import { IItem } from 'interfaces'
+
+export const ItemContext = React.createContext<{
+  items: IItem[]
+  setItems: React.Dispatch<React.SetStateAction<IItem[]>>
+}>({ items: [], setItems: () => null })
+
+ItemContext.displayName = 'Item Context'
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBMtmQ2OBtsnmRPi_VFCVhqZjrKR2qK8zg',
@@ -26,13 +34,16 @@ const theme = extendTheme({
 })
 
 const AppProviders: React.FC = ({ children }) => {
+  const [items, setItems] = React.useState<IItem[]>([])
   return (
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <SuspenseWithPerf traceId={'loading-app-status'} fallback={<div>loading...</div>}>
         <ChakraProvider theme={theme} resetCSS>
-          <Router>
-            <Layout>{children}</Layout>
-          </Router>
+          <ItemContext.Provider value={{ items, setItems }}>
+            <Router>
+              <Layout>{children}</Layout>
+            </Router>
+          </ItemContext.Provider>
         </ChakraProvider>
       </SuspenseWithPerf>
     </FirebaseAppProvider>
