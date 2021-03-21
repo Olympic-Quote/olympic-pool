@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { Button } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
@@ -18,26 +18,40 @@ const NextButton = styled(Button)(() => ({
   margin: '2rem',
 }))
 
-type NavDisplayProps = {
-  previous?: string
-  next?: string
-  isLastPage?: boolean
-  isFirstPage?: boolean
-  isDisabled?: boolean
-}
-
-const NavDisplay: React.FC<NavDisplayProps> = ({ previous, next, isLastPage, isFirstPage, isDisabled }) => {
+const NavDisplay: React.FC = () => {
   const history = useHistory()
 
+  const { pathname } = useLocation()
+
   const handlePrevious = () => {
-    if (previous) {
-      history.push(previous)
+    switch (pathname) {
+      case '/materials':
+        history.push('/')
+        break
+      case '/wages':
+        history.push('/materials')
+        break
+      case '/rentals':
+        history.push('/wages')
+        break
+      default:
+        return
     }
   }
 
   const handleNext = () => {
-    if (next) {
-      history.push(next)
+    switch (pathname) {
+      case '/':
+        history.push('/materials')
+        break
+      case '/materials':
+        history.push('/wages')
+        break
+      case '/wages':
+        history.push('/rentals')
+        break
+      default:
+        return
     }
   }
 
@@ -47,13 +61,11 @@ const NavDisplay: React.FC<NavDisplayProps> = ({ previous, next, isLastPage, isF
 
   return (
     <>
-      {isFirstPage ? null : <PreviousButton onClick={handlePrevious}>Previous</PreviousButton>}
-      {isLastPage ? (
+      {pathname === '/' ? null : <PreviousButton onClick={handlePrevious}>Previous</PreviousButton>}
+      {pathname === '/rentals' ? (
         <NextButton onClick={handleSubmit}>Submit</NextButton>
       ) : (
-        <NextButton onClick={handleNext} isDisabled={isDisabled}>
-          Next
-        </NextButton>
+        <NextButton onClick={handleNext}>Next</NextButton>
       )}
     </>
   )

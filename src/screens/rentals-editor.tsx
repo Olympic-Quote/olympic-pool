@@ -4,7 +4,7 @@ import { BackButton } from 'components/back-button'
 const RentalsEditor: React.FC = () => {
   return (
     <>
-      <BackButton mainPage="rentals" />
+      <BackButton />
       <h1>Rentals Editor!</h1>
     </>
   )

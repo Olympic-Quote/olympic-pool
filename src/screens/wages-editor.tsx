@@ -4,7 +4,7 @@ import { BackButton } from 'components/back-button'
 const WagesEditor: React.FC = () => {
   return (
     <>
-      <BackButton mainPage="wages" />
+      <BackButton />
       <h1>Wages Editor!</h1>
     </>
   )
