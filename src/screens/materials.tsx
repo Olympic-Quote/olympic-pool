@@ -8,6 +8,7 @@ import { AddIcon } from '@chakra-ui/icons'
 
 import { Item } from 'components/item'
 import { ItemContext } from 'components/context'
+import { Items } from 'interfaces'
 
 const Materials: React.FC = () => {
   const { items, setItems } = React.useContext(ItemContext)
@@ -27,7 +28,7 @@ const Materials: React.FC = () => {
       {items
         .filter(item => item.category === 'materials')
         .map(item => (
-          <Item id={item.id} key={item.id} options={materials} />
+          <Item id={item.id} key={item.id} options={materials} category={Items.Materials} />
         ))}
       <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
         <IconButton onClick={addItem} size="lg" aria-label="Add Item">

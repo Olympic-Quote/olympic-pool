@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { IOption } from 'components/item'
-import { IItem } from 'components/context/index'
+import { IOption } from 'interfaces'
+import { IItem } from 'interfaces'
 
 function useSubtotal(
   quantity: number,
@@ -10,6 +10,7 @@ function useSubtotal(
   pricePerUnit: number | undefined,
   setItems: React.Dispatch<React.SetStateAction<IItem[]>>,
   id: string,
+  category: string,
 ): number | undefined {
   const [costPerUnit, setCostPerUnit] = React.useState<number>()
   const [subtotal, setSubtotal] = React.useState<number>()
@@ -40,7 +41,7 @@ function useSubtotal(
                 pricePerUnit,
                 quantity,
                 subtotal,
-                category: 'materials',
+                category,
               }
             : item,
         )
@@ -53,14 +54,14 @@ function useSubtotal(
             pricePerUnit,
             quantity,
             subtotal,
-            category: 'materials',
+            category,
           },
         ]
       }
 
       return newItems
     })
-  }, [subtotal, setItems, id, optionName, pricePerUnit, quantity, options, setPricePerUnit])
+  }, [subtotal, setItems, id, optionName, pricePerUnit, quantity, options, setPricePerUnit, category])
 
   return subtotal
 }

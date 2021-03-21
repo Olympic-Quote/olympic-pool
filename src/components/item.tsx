@@ -7,13 +7,9 @@ import { DeleteIcon } from '@chakra-ui/icons'
 
 import { useSubtotal } from 'hooks/useSubtotal'
 import { ItemContext } from './context'
+import { IOption } from 'interfaces'
 
-export interface IOption {
-  name: string
-  costPerUnit: number
-}
-
-interface IFormInput {
+type FormInput = {
   item: string
   quantity: number
 }
@@ -21,6 +17,7 @@ interface IFormInput {
 type ItemProps = {
   options: IOption[]
   id: string
+  category: string
 }
 
 const StyledForm = styled('form')({
@@ -51,15 +48,15 @@ const SubTotal = styled('div')({
   },
 })
 
-const Item: React.FC<ItemProps> = ({ options, id }) => {
+const Item: React.FC<ItemProps> = ({ options, id, category }) => {
   const [pricePerUnit, setPricePerUnit] = React.useState<number>()
-  const { register, watch } = useForm<IFormInput>()
+  const { register, watch } = useForm<FormInput>()
   const { setItems } = React.useContext(ItemContext)
 
   const optionName = watch('optionName') as string
   const quantity = watch('quantity')
 
-  const subtotal = useSubtotal(quantity, optionName, options, setPricePerUnit, pricePerUnit, setItems, id)
+  const subtotal = useSubtotal(quantity, optionName, options, setPricePerUnit, pricePerUnit, setItems, id, category)
 
   function deleteItem() {
     setItems(prevItems => prevItems.filter(item => item.id !== id))

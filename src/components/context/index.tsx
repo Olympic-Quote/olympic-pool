@@ -4,15 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 import { Layout } from 'components/layout'
-
-export interface IItem {
-  id: string
-  optionName: string
-  pricePerUnit: number | undefined
-  quantity: number
-  category: string
-  subtotal: number | undefined
-}
+import { IItem } from 'interfaces'
 
 export const ItemContext = React.createContext<{
   items: IItem[]
