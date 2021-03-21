@@ -14,4 +14,6 @@ export interface IOption {
 
 export enum Items {
   Materials = 'materials',
+  Rentals = 'rentals',
+  Wages = 'wages',
 }
