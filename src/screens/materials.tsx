@@ -1,25 +1,40 @@
 import * as React from 'react'
 import 'firebase/firestore'
-import { useFirestoreCollectionData, useFirestore } from 'reactfire'
-import { Button } from '@chakra-ui/react'
 import { v4 as uuidv4 } from 'uuid'
+import { useFirestoreCollectionData, useFirestore } from 'reactfire'
+
+import { IconButton } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
 
 import { Item } from 'components/item'
+import { ItemContext } from 'components/context'
+import { Items } from 'interfaces'
 
 const Materials: React.FC = () => {
-  const [itemIDs, setItemIDs] = React.useState<string[]>([uuidv4()])
+  const { items, setItems } = React.useContext(ItemContext)
+  const materialsRef = useFirestore().collection('materials')
+  const materials = useFirestoreCollectionData<{ name: string; costPerUnit: number }>(materialsRef, { idField: 'name' })
+    .data
 
-  const collectionRef = useFirestore().collection('materials')
-  const collectionDocuments = useFirestoreCollectionData<{ name: string; costPerUnit: number }>(collectionRef, {
-    idField: 'name',
-  }).data
+  function addItem() {
+    setItems(prev => [
+      ...prev,
+      { id: uuidv4(), optionName: '', pricePerUnit: undefined, category: 'materials', quantity: 0, subtotal: 0 },
+    ])
+  }
 
   return (
     <>
-      {itemIDs.map(itemID => (
-        <Item key={itemID} options={collectionDocuments} id={itemID} />
-      ))}
-      <Button onClick={() => setItemIDs([...itemIDs, uuidv4()])}>Add Item</Button>
+      {items
+        .filter(item => item.category === 'materials')
+        .map(item => (
+          <Item id={item.id} key={item.id} options={materials} category={Items.Materials} />
+        ))}
+      <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
+        <IconButton onClick={addItem} size="lg" aria-label="Add Item">
+          <AddIcon />
+        </IconButton>
+      </div>
     </>
   )
 }
