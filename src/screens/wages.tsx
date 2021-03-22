@@ -10,19 +10,19 @@ import { Items } from 'interfaces'
 import { useItems } from 'hooks/useItems'
 
 const Wages: React.FC = () => {
-  const { items, setItems, collectionDocuments } = useItems('wages')
+  const { items, setItems, collectionDocuments } = useItems(Items.Wages)
 
   function addItem() {
     setItems(prev => [
       ...prev,
-      { id: uuidv4(), optionName: '', pricePerUnit: undefined, category: 'wages', quantity: 0, subtotal: 0 },
+      { id: uuidv4(), optionName: '', pricePerUnit: undefined, category: Items.Wages, quantity: 0, subtotal: 0 },
     ])
   }
 
   return (
     <>
       {items
-        .filter(item => item.category === 'wages')
+        .filter(item => item.category === Items.Wages)
         .map(item => (
           <Item id={item.id} key={item.id} options={collectionDocuments} category={Items.Wages} />
         ))}
